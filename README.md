@@ -30,12 +30,14 @@ Terminal::writeln("Hello World", "cyan", "bold", "underline");
 // changing of parameeters order does't matter
 Terminal::writeln("Hello World", "bold", "blink", "cyan", "underline");
 
+// red on yellow background
+Terminal::writeln("Hello World", "onyellow", "red");
+
 // only print message to output. don't add new line
 Terminal::write("Hello World");
 
 // kills the script and prints message to output
 Terminal::dieln("I'm died :(", "yellow", "underline);
-
 ```
 
 #### Formatter attributes: #####
