@@ -7,35 +7,7 @@ namespace CLI;
  * @author SRKNZCN <serkanozcan@gmail.com>
  */
 class Terminal {
-
-	const
-		CLEAR = 'clear',
-		RESET = 'reset',
-		BOLD = 'bold',
-		DARK = 'dark',
-		FAINT = 'faint',
-		UNDERLINE = 'underline',
-		UNDERSCORE = 'underscore',
-		BLINK = 'blink',
-		REVERSE = 'reverse',
-		CONCEALED = 'concealed',
-		BLACK = 'black',
-		RED = 'red',
-		GREEN = 'green',
-		YELLOW = 'yellow',
-		BLUE = 'blue',
-		MAGENTA = 'magenta',
-		CYAN = 'cyan',
-		WHITE = 'white',
-		BRIGHTBLACK = 'brightblack',
-		BRIGHTRED = 'brightred',
-		BRIGHTGREEN = 'brightgreen',
-		BRIGHTYELLOW = 'brightyellow',
-		BRIGHTBLUE = 'blue',
-		BRIGHTMAGENTA = 'brightmagenta',
-		BRIGHTCYAN = 'brightcyan',
-		BRIGHTWHITE = 'brightwhite';
-
+    
 	private $ATTRIBUTES = array(
 		'clear'         => 0,
 		'reset'         => 0,
