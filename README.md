@@ -1,4 +1,4 @@
-# PHP CLI/Terminal library #
+# PHP CLI/Terminal library
 
 ## PHP CLI/Terminal for color, blink and format output messages ##
 
