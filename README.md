@@ -4,7 +4,7 @@
 
 ### Installation and Usage
 ```
-require srknzcn/terminal package in your composer.json file
+require srknzcn/terminal package as dev-master in your composer.json file
 ```
 
 #### Usage: ####
