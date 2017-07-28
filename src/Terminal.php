@@ -1,5 +1,9 @@
 <?php
-
+/**
+ * PHP CLI/Terminal for color, blink and format output messages
+ * 
+ * @author SRKNZCN <serkanozcan@gmail.com>
+ */
 class Terminal {
 
 	const
