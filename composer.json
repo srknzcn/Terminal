@@ -1,0 +1,11 @@
+{
+    "name": "serkan/terminal",
+    "description": "PHP CLI / Terminal",
+    "authors": [
+        {
+            "name": "SRKNZCN",
+            "email": "serkanozcan@gmail.com"
+        }
+    ],
+    "require": {}
+}
