@@ -1,4 +1,6 @@
 <?php
+namespace CLI;
+
 /**
  * PHP CLI/Terminal for color, blink and format output messages
  * 

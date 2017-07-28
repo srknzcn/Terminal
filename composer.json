@@ -1,16 +1,16 @@
 {
     "name": "srknzcn/terminal",
     "description": "PHP CLI / Terminal",
+    "version": "1.0",
     "authors": [
         {
             "name": "SRKNZCN",
             "email": "serkanozcan@gmail.com"
         }
     ],
-    "require": {},
     "autoload": {
 		"psr-4": {
-			"Terminal\\": "src/"
+			"CLI\\": "src/"
 		}
 	}
 }
