@@ -28,7 +28,7 @@ Terminal::writeln("Hello World", "yellow", "blink");
 Terminal::writeln("Hello World", "cyan", "bold", "underline");
 
 // changing of parameeters order does't matter
-Terminal::writeln("Hello World", "bold", "blink" "cyan", "underline");
+Terminal::writeln("Hello World", "bold", "blink", "cyan", "underline");
 
 // only print message to output. don't add new line
 Terminal::write("Hello World");
