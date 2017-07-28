@@ -2,7 +2,7 @@
 
 ## PHP CLI/Terminal for color, blink and format output messages ##
 
-Installation and Usage
+### Installation and Usage
 ```
 require srknzcn/terminal package in your composer.json file
 ```
