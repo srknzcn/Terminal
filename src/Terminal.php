@@ -3,12 +3,12 @@ namespace CLI;
 
 /**
  * PHP CLI/Terminal for color, blink and format output messages
- * 
+ *
  * @author SRKNZCN <serkanozcan@gmail.com>
  */
-class Terminal 
+class Terminal
 {
-    
+
 	private $ATTRIBUTES = array(
 		'clear'         => 0,
 		'reset'         => 0,
@@ -41,7 +41,7 @@ class Terminal
 	public $EACHLINE = FALSE;
 	static $instance = NULL;
 
-	public function __construct() 
+	public function __construct()
 	{
 		// PHP_VERSION_ID is available as of PHP 5.2.7, if our
 		// version is lower than that, then throw exception
@@ -54,12 +54,12 @@ class Terminal
 		}
 	}
 
-	/** 
+	/**
 	 * Prints message to terminal screen with given attributes.
-	 * 
-	 * @return Terminal 
+	 *
+	 * @return Terminal
 	 */
-	public static function write($string, $color = 'green') 
+	public static function write($string, $color = 'green')
 	{
 		if (self::$instance instanceof Terminal)
 			self::$instance;
@@ -74,12 +74,12 @@ class Terminal
 		return self::$instance;
 	}
 
-	/** 
+	/**
 	 * Prints message to terminal screen with given attributes and adds new line.
-	 * 
-	 * @return Terminal 
+	 *
+	 * @return Terminal
 	 */
-	public static function writeln($string = ' ', $color = 'green') 
+	public static function writeln($string = ' ', $color = 'green')
 	{
 		if (self::$instance instanceof Terminal)
 			self::$instance;
@@ -94,12 +94,12 @@ class Terminal
 		return self::$instance;
 	}
 
-	/** 
+	/**
 	 * Dies script and prints the message
-	 * 
+	 *
 	 * @return void
 	 */
-	public static function dieln($string = ' ', $color = 'green') 
+	public static function dieln($string = ' ', $color = 'green')
 	{
 		if (self::$instance instanceof Terminal)
 			self::$instance;
@@ -125,7 +125,7 @@ class Terminal
 	 * @access public
 	 * @return string surrounded by escape codes
 	 */
-	public function __call($method, $args) 
+	public function __call($method, $args)
 	{
 		return $this->colored($args[0], explode('_', strtolower($method)));
 	}
@@ -137,7 +137,7 @@ class Terminal
 	 * @access public
 	 * @return escape code for a geven set of color attributes
 	 */
-	private function color($codes = array()) 
+	private function color($codes = array())
 	{
 		$attribute = '';
 		foreach ($codes as $code) {
@@ -155,14 +155,13 @@ class Terminal
 
 	/**
 	 * uncolor
-	 *
 	 * $ac->uncolor(array('1;42', chr(27) . "[m", '', chr(27) . "[0m")); // array('bold','ongreen','reset')
 	 *
 	 * @param array $codes - escap codes to lookup
 	 * @access public
 	 * @return array of named color attributes for a given set of escape codes
 	 */
-	private function uncolor($codes = array()) 
+	private function uncolor($codes = array())
 	{
 		$nums = array();
 		$result = array();
@@ -200,7 +199,7 @@ class Terminal
 	 * @access public
 	 * @return string surrounded by escape codes
 	 */
-	private function colored($txt = '', $codes = array()) 
+	private function colored($txt = '', $codes = array())
 	{
 		$attr = $this->color($codes);
 		if (!empty($this->EACHLINE)) {
@@ -227,7 +226,7 @@ class Terminal
 	 * @access public
 	 * @return string - txt w/ removed ANSI color codes
 	 */
-	private function colorStrip($txt) 
+	private function colorStrip($txt)
 	{
 		return preg_replace('/' . chr(27) . '\[[\d;]*m/', '', $txt);
 	}
@@ -239,7 +238,7 @@ class Terminal
 	 * @access public
 	 * @return boolean - indicates wether the color is valid
 	 */
-	private function colorValid($color) 
+	private function colorValid($color)
 	{
 		return isset($this->ATTRIBUTES[$color]);
 	}
