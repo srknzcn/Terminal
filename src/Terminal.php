@@ -155,6 +155,7 @@ class Terminal
 
 	/**
 	 * uncolor
+	 *
 	 * $ac->uncolor(array('1;42', chr(27) . "[m", '', chr(27) . "[0m")); // array('bold','ongreen','reset')
 	 *
 	 * @param array $codes - escap codes to lookup
