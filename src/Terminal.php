@@ -2,7 +2,7 @@
 namespace CLI;
 
 /**
- * PHP CLI/Terminal for color, blink and format output messages
+ * PHP CLI/Terminal for coloring, blink or format output messages
  *
  * @author SRKNZCN <serkanozcan@gmail.com>
  */
@@ -38,8 +38,13 @@ class Terminal
 		'brightwhite'   => 97, 'onbrightwhite' => 107
 	);
 	private $ATTRIBUTES_R = array();
-	public $EACHLINE = FALSE;
-	static $instance = NULL;
+	private $EACHLINE = false;
+	private static $instance = null;
+	private $endOfLine = false;
+	private $outputLogFile = null;
+	private $_tmpOutputBuffer = null;
+	private $logger = null;
+
 
 	public function __construct()
 	{
@@ -55,22 +60,38 @@ class Terminal
 	}
 
 	/**
+	 * Registers Phalcon PHP Framework's logger service.
+	 * $logger must be instance of
+	 *
+	 * @param  mixed $logger
+	 * @return void
+	 */
+	public static function registerPhalconLogger($logger)
+	{
+		self::$instance = (self::$instance instanceof Terminal) ? self::$instance : new Terminal();
+
+		self::$instance->logger = $logger;
+	}
+
+	/**
 	 * Prints message to terminal screen with given attributes.
 	 *
 	 * @return Terminal
 	 */
-	public static function write($string, $color = 'green')
+	public static function write()
 	{
-		if (self::$instance instanceof Terminal)
-			self::$instance;
-		else
-			self::$instance = new Terminal();
+		self::$instance = (self::$instance instanceof Terminal) ? self::$instance : new Terminal();
+		// self::$instance->endOfLine = false;
 
 		$params = array();
 		$args = func_get_args();
 		for ($i = 1; $i < count($args); $i++)
 			$params[] = $args[$i];
-		echo self::$instance->colored($args[0], $params);
+
+		echo self::$instance->colored($args[0]);
+
+		self::$instance->_tmpOutputBuffer .= $args[0];
+
 		return self::$instance;
 	}
 
@@ -81,16 +102,22 @@ class Terminal
 	 */
 	public static function writeln($string = ' ', $color = 'green')
 	{
-		if (self::$instance instanceof Terminal)
-			self::$instance;
-		else
-			self::$instance = new Terminal();
+		self::$instance = (self::$instance instanceof Terminal) ? self::$instance : new Terminal();
+		// self::$instance->endOfLine = true;
 
 		$params = array();
 		$args = func_get_args();
 		for ($i = 1; $i < count($args); $i++)
 			$params[] = $args[$i];
-		echo self::$instance->colored((isset($args[0]) ? $args[0] : ''), $params) . "\n";
+
+		echo self::$instance->colored(((isset($args[0]) ? $args[0] : '') . PHP_EOL), $params);
+
+		if (self::$instance->logger) {
+			self::$instance->_tmpOutputBuffer .= (isset($args[0]) ? $args[0] : '');
+			self::$instance->logger->info(self::$instance->_tmpOutputBuffer);
+			self::$instance->_tmpOutputBuffer = null;
+		}
+
 		return self::$instance;
 	}
 
@@ -101,16 +128,22 @@ class Terminal
 	 */
 	public static function dieln($string = ' ', $color = 'green')
 	{
-		if (self::$instance instanceof Terminal)
-			self::$instance;
-		else
-			self::$instance = new Terminal();
+		self::$instance = (self::$instance instanceof Terminal) ? self::$instance : new Terminal();
+		self::$instance->endOfLine = true;
 
 		$params = array();
 		$args = func_get_args();
 		for ($i = 1; $i < count($args); $i++)
 			$params[] = $args[$i];
+
 		echo self::$instance->colored((isset($args[0]) ? $args[0] : ''), $params) . "\n";
+
+		if (self::$instance->logger) {
+			self::$instance->_tmpOutputBuffer .= (isset($args[0]) ? $args[0] : '');
+			self::$instance->logger->info(self::$instance->_tmpOutputBuffer);
+			self::$instance->_tmpOutputBuffer = null;
+		}
+
 		exit;
 	}
 
