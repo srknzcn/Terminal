@@ -60,8 +60,8 @@ class Terminal
 	}
 
 	/**
-	 * Registers Phalcon PHP Framework's logger service.
-	 * $logger must be instance of
+	 * Registers Phalcon PHP Framework's logger service. $logger must be instance of \Phalcon\Logger service.
+	 * When this function called, logging to file stream will be enabled.
 	 *
 	 * @param  mixed $logger
 	 * @return void
@@ -69,7 +69,6 @@ class Terminal
 	public static function registerPhalconLogger($logger)
 	{
 		self::$instance = (self::$instance instanceof Terminal) ? self::$instance : new Terminal();
-
 		self::$instance->logger = $logger;
 	}
 
